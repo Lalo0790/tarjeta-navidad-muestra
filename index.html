@@ -1,0 +1,97 @@
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Feliz Navidad · Familia García</title>
+<meta name="description" content="Tarjeta navideña digital personalizada · Eduardo García Soluciones">
+<meta property="og:title" content="🎄 Una tarjeta navideña para ti"><meta property="og:description" content="Ábrela, tiene un mensaje especial 💌"><meta property="og:image" content="familia.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,sans-serif;min-height:100vh;background:radial-gradient(ellipse at top,#1d3b2e 0%,#0b1a14 55%,#050b08 100%);color:#fff;overflow-x:hidden}
+#snow{position:fixed;inset:0;pointer-events:none;z-index:5}
+.lights{display:flex;justify-content:space-around;position:relative;height:46px;z-index:6}
+.lights:before{content:"";position:absolute;top:8px;left:-5%;width:110%;height:30px;border-bottom:2px solid #333;border-radius:50%}
+.lights i{width:12px;height:20px;border-radius:50%;margin-top:22px;animation:glow 1.4s infinite alternate}
+.lights i:nth-child(4n+1){background:#ff3b3b;color:#ff3b3b}.lights i:nth-child(4n+2){background:#ffd43b;color:#ffd43b;animation-delay:.35s}.lights i:nth-child(4n+3){background:#3bff8a;color:#3bff8a;animation-delay:.7s}.lights i:nth-child(4n){background:#3bc4ff;color:#3bc4ff;animation-delay:1s}
+@keyframes glow{from{opacity:.35;box-shadow:none}to{opacity:1;box-shadow:0 0 14px 4px currentColor}}
+.wrap{max-width:460px;margin:0 auto;padding:10px 20px 40px;position:relative;z-index:6;text-align:center}
+.env{margin:40px auto 0;cursor:pointer;width:100%;max-width:340px;aspect-ratio:1.45;background:linear-gradient(135deg,#b3141f,#7a0b13);border-radius:14px;position:relative;box-shadow:0 20px 50px #0009;display:flex;align-items:center;justify-content:center;animation:bob 2.4s ease-in-out infinite}
+.env:before{content:"";position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(160deg,#c91c28,#8d0f18);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:14px 14px 0 0}
+.seal{position:relative;width:74px;height:74px;border-radius:50%;background:radial-gradient(#f5d27a,#b88a2c);display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 12px #0007}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-1deg)}}
+.hint{margin-top:22px;font-weight:600;letter-spacing:.12em;font-size:13px;color:#f5d27a;text-transform:uppercase;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.card{display:none;opacity:0;transform:translateY(40px) scale(.96);transition:all 1s cubic-bezier(.2,.8,.2,1)}
+.card.show{opacity:1;transform:none}
+h1{font-family:'Great Vibes',cursive;font-weight:400;font-size:64px;line-height:1;color:#f5d27a;text-shadow:0 0 24px #f5d27a66;margin-top:10px}
+.sub{letter-spacing:.3em;font-size:12px;text-transform:uppercase;color:#cfe;opacity:.85;margin:8px 0 22px}
+.frame{position:relative;padding:12px;background:linear-gradient(145deg,#f5d27a,#a77a24,#f5d27a);border-radius:18px;box-shadow:0 20px 50px #000a;transform:rotate(-1.5deg)}
+.frame img{width:100%;display:block;border-radius:10px;aspect-ratio:3/4;object-fit:cover}
+.frame:after{content:"🎀";position:absolute;top:-22px;right:-12px;font-size:44px;transform:rotate(18deg)}
+.msg{margin:28px 0 8px;font-size:17px;line-height:1.65;color:#f3f3f3}
+.firma{font-family:'Great Vibes',cursive;font-size:36px;color:#f5d27a;margin:6px 0 26px}
+.btns{display:flex;flex-direction:column;gap:12px}
+.btn{border:0;border-radius:40px;padding:16px;font:800 15px Montserrat;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.wa{background:#25d366;color:#04361b;box-shadow:0 8px 24px #25d36655}
+.mu{background:#ffffff14;color:#fff;border:1px solid #ffffff33}
+.ed{background:transparent;color:#f5d27a;border:1px dashed #f5d27a88}
+.custom{display:none;text-align:left;background:#ffffff10;border:1px solid #ffffff22;border-radius:16px;padding:16px;margin-top:14px}
+.custom label{font-size:12px;color:#cfe;display:block;margin:10px 0 4px}
+.custom input,.custom textarea{width:100%;padding:12px;border-radius:10px;border:0;font:15px Montserrat}
+.demo{margin-top:34px;font-size:11px;color:#9bb;line-height:1.6}
+.demo b{color:#f5d27a}
+</style></head><body>
+<canvas id="snow"></canvas>
+<div class="lights"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+ <div id="intro">
+  <p class="sub" style="margin-top:30px">Tienes una tarjeta especial</p>
+  <h1 id="ttop">Para ti 💌</h1>
+  <div class="env" id="env"><div class="seal">🎄</div></div>
+  <p class="hint">Toca para abrir</p>
+ </div>
+ <div class="card" id="card">
+  <h1>Feliz Navidad</h1>
+  <p class="sub">y próspero 2027</p>
+  <div class="frame"><img id="foto" src="familia.jpg" alt="Foto familiar"></div>
+  <p class="msg" id="msg">Que esta Navidad llene tu hogar de paz, abrazos y risas. Gracias por estar cerca de nosotros este año. ¡Te queremos mucho!</p>
+  <p class="firma" id="firma">Familia García</p>
+  <div class="btns">
+   <a class="btn wa" id="share" href="#" target="_blank"><svg width="22" height="22" viewBox="0 0 24 24" fill="#04361b"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.8-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Compartir por WhatsApp</a>
+   <button class="btn mu" id="mus">🔇 Activar música</button>
+   <button class="btn ed" id="edit">✏️ Personalizar esta tarjeta</button>
+  </div>
+  <div class="custom" id="custom">
+   <label>Para</label><input id="iPara" placeholder="Ej. Tía Lupita">
+   <label>Mensaje</label><textarea id="iMsg" rows="4"></textarea>
+   <label>Firma</label><input id="iFirma">
+   <label>Foto</label><input type="file" id="iFoto" accept="image/*">
+   <button class="btn wa" id="apply" style="margin-top:14px;width:100%">Guardar y generar link</button>
+  </div>
+  <p class="demo">Demo de muestra · Foto y textos de ejemplo.<br>Hecho por <b>Eduardo García Soluciones</b> · Webs · Bots · Apps</p>
+ </div>
+</div>
+<audio id="aud" src="musica.mp3" loop preload="none"></audio>
+<script>
+const $=s=>document.querySelector(s);
+const q=new URLSearchParams(location.search);
+if(q.get('para'))$('#ttop').textContent='Para '+q.get('para')+' 💌';
+if(q.get('m'))$('#msg').textContent=q.get('m');
+if(q.get('f'))$('#firma').textContent=q.get('f');
+const saved=localStorage.getItem('tn_foto');if(saved&&!q.get('para'))$('#foto').src=saved;
+function link(){return location.origin+location.pathname+'?'+new URLSearchParams({...(q.get('para')?{para:q.get('para')}:{}),m:$('#msg').textContent,f:$('#firma').textContent})}
+function upd(){$('#share').href='https://wa.me/?text='+encodeURIComponent('🎄 Te mandamos una tarjeta navideña, ábrela: '+link())}
+upd();
+const aud=$('#aud');
+function open(){ $('#intro').style.display='none';const c=$('#card');c.style.display='block';requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.add('show')));burst();aud.volume=.6;aud.play().then(()=>$('#mus').textContent='🔊 Música activada').catch(()=>{});}
+$('#env').onclick=open;
+$('#mus').onclick=()=>{if(aud.paused){aud.play();$('#mus').textContent='🔊 Música activada'}else{aud.pause();$('#mus').textContent='🔇 Activar música'}};
+$('#edit').onclick=()=>{const c=$('#custom');c.style.display=c.style.display=='block'?'none':'block';$('#iMsg').value=$('#msg').textContent;$('#iFirma').value=$('#firma').textContent;$('#iPara').value=q.get('para')||''};
+$('#iFoto').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const cv=document.createElement('canvas');const s=600/im.width;cv.width=600;cv.height=im.height*s;cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);const d=cv.toDataURL('image/jpeg',.8);$('#foto').src=d;try{localStorage.setItem('tn_foto',d)}catch(e){}};im.src=r.result};r.readAsDataURL(f)};
+$('#apply').onclick=()=>{$('#msg').textContent=$('#iMsg').value;$('#firma').textContent=$('#iFirma').value;if($('#iPara').value)q.set('para',$('#iPara').value);else q.delete('para');history.replaceState(0,'',link());upd();$('#custom').style.display='none';burst()};
+// nieve
+const cv=$('#snow'),x=cv.getContext('2d');let W,H,fl=[],sp=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(let i=0;i<90;i++)fl.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*3+1,v:Math.random()*.8+.4,w:Math.random()*6});
+function burst(){for(let i=0;i<80;i++)sp.push({x:W/2,y:H*.4,vx:(Math.random()-.5)*10,vy:(Math.random()-.8)*10,l:80,c:['#f5d27a','#ff3b3b','#3bff8a','#fff'][i%4]})}
+(function loop(t){x.clearRect(0,0,W,H);x.fillStyle='#fff';for(const f of fl){f.y+=f.v;f.x+=Math.sin(t/1000+f.w)*.4;if(f.y>H){f.y=-5;f.x=Math.random()*W}x.globalAlpha=.8;x.beginPath();x.arc(f.x,f.y,f.r,0,7);x.fill()}
+for(const p of sp){p.x+=p.vx;p.y+=p.vy;p.vy+=.25;p.l--;x.globalAlpha=Math.max(p.l/80,0);x.fillStyle=p.c;x.fillRect(p.x,p.y,5,5)}sp=sp.filter(p=>p.l>0);x.globalAlpha=1;requestAnimationFrame(loop)})(0);
+</script></body></html>
